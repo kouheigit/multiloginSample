@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::resource('photos', PhotoController::class);
+Route::resources(['rest'=>RestController::class,'rest1'=>RestController::class,'rest.create'=>RestController::class,]);
+//Route::resource('rest',[App\Http\Controllers\RestController::class,'show'])->name('rest');
+
+Route::resources(['resttest.show'=>ResttestController::class,'resttest'=>ResttestController::class,'resttest.create'=>ResttestController::class,]);
+
 Route::get('/test',[App\Http\Controllers\HomeController::class,'index'])->name('test');
 Route::get('/dashboard', function () {
     return view('dashboard');
