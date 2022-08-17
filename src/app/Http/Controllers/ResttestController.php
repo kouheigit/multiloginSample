@@ -67,7 +67,9 @@ class ResttestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $findid = Resttest::find($id);
+        $show_id = $findid->toArray();
+        return view('resttest.edit',compact('show_id'));
     }
 
     /**
@@ -79,7 +81,11 @@ class ResttestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $apiname = $request->input('apiname');
+
+        $apiupdate = Resttest::find($id);
+        $apiupdate = $apiupdate->name = name;
+
     }
 
     /**
