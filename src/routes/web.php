@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('weather',[App\Http\Controllers\WeatherController::class,'index'])->name('weather');
+
 //Route::resource('photos', PhotoController::class);
 Route::resources(['rest'=>RestController::class,'rest1'=>RestController::class,'rest.create'=>RestController::class,]);
 //Route::resource('rest',[App\Http\Controllers\RestController::class,'show'])->name('rest');
