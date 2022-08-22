@@ -10,7 +10,7 @@ class WeatherController extends Controller
     {
         $city = 'Tokyo';
         $apykey = 'df2e1a6643997ca387ffdd46583f61c7';
-        $url = "http://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apykey";
+        $url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&units=metric&appid=$apykey";
         $method = "GET";
 
         $client = new Client();
@@ -19,15 +19,33 @@ class WeatherController extends Controller
         $response = $client->request($method, $url);
 
         $data = $response->getBody();
+
+
         $data = json_decode($data, true);
 
-
-       // $testdata = $data['id'];
-
-        return response()->json($data);
+       // $datas = $data['list'][0]['main']['pressure'];
 
 
-        return view('weather.weather',compact('testdata'));
+        $datas = $data['list'];//真打　
+
+
+
+//        return response()->json($data);
+
+        //$datas = $data['pressure'];
+
+        /*
+        return response()->json(
+            [
+                'data' => $datas['weather'][0]['main'],
+                'icon' => $datas['weather'][0]['icon'],
+            ]
+        );*/
+
+
+
+
+        return view('weather.weather',compact('datas'));
 
         /*
          * $jsonString ='{
